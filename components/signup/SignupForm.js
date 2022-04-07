@@ -1,10 +1,11 @@
 import { View, Text, TextInput, StyleSheet, Pressable, TouchableOpacity } from 'react-native'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import { borderColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes'
 
 const SignupForm = ({ navigation }) => {
     const SignupFormSchema = Yup.object().shape({
-        email: Yup.string().email().required('An email is required'),
+        email: Yup.string().email('Invalid email').required('An email is required'),
         username: Yup.string().required().min(2, 'A username is required'),
         password: Yup.string()
             .required()
@@ -21,10 +22,16 @@ const SignupForm = ({ navigation }) => {
                 validationSchema={SignupFormSchema}
                 validateOnMount={true}
             >
-                {({ handleChange, handleBlur, handleSubmit, values, isValid }) => (
+                {({ handleChange, handleBlur, handleSubmit, values, isValid, errors, touched }) => (
                     <>
-                        <View style={styles.inputField}>
-                            <TextInput 
+                        <View style={[
+                            styles.inputField,
+                            {
+                                borderColor: 
+                                    ((errors.email === 'Invalid email' || errors.email === 'An email is required') && touched.email) ? 'red' : '#ccc',
+                            }
+                        ]}>
+                            <TextInput
                                 placeholderTextColor='#444'
                                 placeholder='Email'
                                 autoCapitalize='none'
@@ -35,10 +42,10 @@ const SignupForm = ({ navigation }) => {
                                 onBlur={handleBlur('email')}
                                 value={values.email}
                             />
+                            {console.log(touched)}
                         </View>
-
                         <View style={styles.inputField}>
-                            <TextInput 
+                            <TextInput
                                 placeholderTextColor='#444'
                                 placeholder='Username'
                                 autoCapitalize='none'
@@ -50,7 +57,7 @@ const SignupForm = ({ navigation }) => {
                         </View>
 
                         <View style={styles.inputField}>
-                            <TextInput 
+                            <TextInput
                                 placeholderTextColor='#444'
                                 placeholder='Password'
                                 autoCapitalize='none'
@@ -62,8 +69,8 @@ const SignupForm = ({ navigation }) => {
                             />
                         </View>
 
-                        <Pressable 
-                            titleSize={20} 
+                        <Pressable
+                            titleSize={20}
                             style={styles.button(isValid)}
                             onPress={handleSubmit}
                         >
@@ -72,7 +79,7 @@ const SignupForm = ({ navigation }) => {
 
                         <View style={styles.signupContainer}>
                             <Text>Already have an account? </Text>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => navigation.goBack()}>
                                 <Text style={{ color: '#6BB0F5' }}>Log In</Text>
                             </TouchableOpacity>
                         </View>
@@ -93,6 +100,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FAFAFA',
         marginBottom: 10,
         borderWidth: 1,
+        borderColor: '#ccc',
     },
     button: isValid => ({
         backgroundColor: isValid ? '#0096F6' : '#9ACAF7',

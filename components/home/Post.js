@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { useState, useEffect } from 'react'
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, Dimensions } from 'react-native'
 import HeartIcon from '../../assets/heartIcon.png'
 import HeartActiveIcon from '../../assets/heartActiveIcon.png'
 import CommentIcon from '../../assets/commentIcon.png'
@@ -46,12 +46,44 @@ const PostHeader = ({ post }) => (
 
 
 const PostImage = ({ post }) => {
+    const [currentImg, setCurrentImg] = useState(1)
+    const [enableQuantityImg, setEnableQuantityImg] = useState(true)
+    const windowWidth = Dimensions.get('window').width;
+
+    useEffect(() => {
+        const toggleQuantityImg = setInterval(() => {
+            if (enableQuantityImg) setEnableQuantityImg(false)
+        }, 5000)
+
+        return () => clearInterval(toggleQuantityImg)
+    }, [])
+
     return (
-        <View style={{ width: '100%', height: 450 }}>
-            <Image
-                style={{ height: '100%', resizeMode: 'cover' }}
-                source={{ uri: post.image }}
-            />
+        <View>
+            <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                decelerationRate={0}
+                snapToInterval={windowWidth}
+                onMomentumScrollEnd={e => {
+                    setCurrentImg(Math.round(e.nativeEvent.contentOffset.x / windowWidth) + 1)
+                    setEnableQuantityImg(true)
+                }}>
+                {post.images.map((image, index) => (
+                    <View key={index} style={{ width: windowWidth, height: windowWidth }}>
+                        <Image
+                            style={{ height: '100%', resizeMode: 'contain' }}
+                            source={{ uri: image }}
+                        />
+                    </View>
+                ))}
+            </ScrollView>
+
+            {enableQuantityImg &&
+                <View style={styles.quantityImg}>
+                    <Text style={{ color: '#fff', fontSize: 12 }}>{currentImg}/{post.images.length}</Text>
+                </View>
+            }
         </View>
     )
 }
@@ -127,10 +159,10 @@ const Comments = ({ post }) => (
 
 const styles = StyleSheet.create({
     divider: {
-        width: '80%',
+        width: '90%',
         height: 1,
         backgroundColor: '#ccc',
-        marginHorizontal: '10%',
+        marginHorizontal: '5%',
         marginBottom: 10,
     },
     story: {
@@ -140,6 +172,17 @@ const styles = StyleSheet.create({
         marginLeft: 6,
         borderWidth: 1.6,
         borderColor: '#ff8501',
+    },
+    quantityImg: {
+        width: 32,
+        height: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#000',
+        position: 'absolute',
+        top: 24,
+        right: 24,
+        borderRadius: 12
     },
     footerIcon: {
         width: 25,

@@ -6,8 +6,8 @@ const LoginForm = ({ navigation }) => {
     const LoginFormSchema = Yup.object().shape({
         email: Yup.string().email().required('An email is required'),
         password: Yup.string()
-            .required()
             .min(6, 'Your password has to have at least 6 characters')
+            .required('An password is required')
     })
 
     return (
@@ -20,12 +20,18 @@ const LoginForm = ({ navigation }) => {
                 validationSchema={LoginFormSchema}
                 validateOnMount={true}
             >
-                {({ handleChange, handleBlur, handleSubmit, values, isValid }) => (
+                {({ handleChange, handleBlur, handleSubmit, values, isValid, errors, touched }) => (
                     <>
-                        <View style={styles.inputField}>
-                            <TextInput 
+                        <View style={[
+                            styles.inputField,
+                            {
+                                borderColor: 
+                                    ((errors.email === 'Invalid email' || errors.email === 'An email is required') && touched.email) ? 'red' : '#ccc',
+                            }
+                        ]}>
+                            <TextInput
                                 placeholderTextColor='#444'
-                                placeholder='Phone number, username or email'
+                                placeholder='Email'
                                 autoCapitalize='none'
                                 keyboardType='email-address'
                                 textContentType='emailAddress'
@@ -36,8 +42,14 @@ const LoginForm = ({ navigation }) => {
                             />
                         </View>
 
-                        <View style={styles.inputField}>
-                            <TextInput 
+                        <View style={[
+                            styles.inputField,
+                            {
+                                borderColor:
+                                    ((errors.password === 'Your password has to have at least 6 characters' || errors.password === 'An password is required') && touched.email) ? 'red' : '#ccc',
+                            }
+                        ]}>
+                            <TextInput
                                 placeholderTextColor='#444'
                                 placeholder='Password'
                                 autoCapitalize='none'
@@ -54,10 +66,13 @@ const LoginForm = ({ navigation }) => {
                             <Text style={{ color: '#6BB0F5' }}>Forgot password?</Text>
                         </View>
 
-                        <Pressable 
-                            titleSize={20} 
+                        <Pressable
+                            titleSize={20}
                             style={styles.button(isValid)}
-                            onPress={handleSubmit}
+                            onPress={() => {
+                                handleSubmit()
+                                navigation.push('Home')
+                            }}
                             disabled={!isValid}
                         >
                             <Text style={styles.buttonText}>Log In</Text>
@@ -65,7 +80,7 @@ const LoginForm = ({ navigation }) => {
 
                         <View style={styles.signupContainer}>
                             <Text>Don't have an account? </Text>
-                            <TouchableOpacity onPress={() => navigation.push('Signup')}>
+                            <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
                                 <Text style={{ color: '#6BB0F5' }}>Sign Up</Text>
                             </TouchableOpacity>
                         </View>
@@ -86,6 +101,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FAFAFA',
         marginBottom: 10,
         borderWidth: 1,
+        borderColor: '#ccc',
     },
     button: isValid => ({
         backgroundColor: isValid ? '#0096F6' : '#9ACAF7',

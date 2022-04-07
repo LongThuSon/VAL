@@ -1,11 +1,11 @@
-import { View, StyleSheet } from 'react-native'
+import { SafeAreaView, StyleSheet } from 'react-native'
 import LoginForm from '../components/login/LoginForm'
 
 const LoginScreen = ({ navigation }) => {
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <LoginForm navigation={navigation} />
-        </View>
+        </SafeAreaView>
     )
 }
 

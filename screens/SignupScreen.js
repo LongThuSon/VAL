@@ -1,11 +1,11 @@
-import { View, StyleSheet } from 'react-native'
+import { SafeAreaView, StyleSheet } from 'react-native'
 import SignupForm from '../components/signup/SignupForm'
 
-const SignupScreen = () => {
+const SignupScreen = ({ navigation }) => {
     return (
-        <View style={styles.container}>
-            <SignupForm />
-        </View>
+        <SafeAreaView style={styles.container}>
+            <SignupForm navigation={navigation} />
+        </SafeAreaView>
     )
 }
 
