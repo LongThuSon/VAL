@@ -1,8 +1,11 @@
 import { View, Text, TextInput, StyleSheet, Pressable, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 
-const LoginForm = ({ navigation }) => {
+const LoginForm = () => {
+    const navigation = useNavigation()
+
     const LoginFormSchema = Yup.object().shape({
         email: Yup.string().email().required('An email is required'),
         password: Yup.string()
@@ -71,7 +74,7 @@ const LoginForm = ({ navigation }) => {
                             style={styles.button(isValid)}
                             onPress={() => {
                                 handleSubmit()
-                                navigation.push('Home')
+                                navigation.push('BottomTab')
                             }}
                             disabled={!isValid}
                         >

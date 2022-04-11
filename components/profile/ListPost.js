@@ -1,59 +1,95 @@
 import { useState } from 'react'
-import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native'
-import ListImage from '../../assets/listImageIcon.png'
-import TagedImage from '../../assets/tagedImageIcon.png'
-import ImageIcon from '../../assets/imageIcon.png'
-import NotifiListImg from '../../assets/notifiListImgIcon.png'
+import { View, Pressable, TouchableOpacity, Image, Text, StyleSheet } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import IonicIcon from 'react-native-vector-icons/Ionicons'
 
 const ListPost = ({ info }) => {
     const [selectIcon, setSelectIcon] = useState(true)
+    const navigation = useNavigation()
 
     return (
         <View>
             <View style={styles.containerIcons}>
-                <TouchableOpacity
+                <Pressable
                     style={[styles.containerIcon, selectIcon && styles.borderIcon]}
                     onPress={() => setSelectIcon(true)}
                 >
-                    <Image style={styles.selectIcon} source={ListImage} />
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={[styles.containerIcon, !selectIcon && styles.borderIcon]}
+                    <IonicIcon
+                        name='image'
+                        size={25}
+                        color='#000'
+                    />
+                </Pressable>
+                <Pressable
+                    style={[styles.containerIcon, selectIcon && styles.borderIcon]}
                     onPress={() => setSelectIcon(false)}
                 >
-                    <Image style={styles.selectIcon} source={TagedImage} />
-                </TouchableOpacity>
+                    <IonicIcon
+                        name='pricetag'
+                        size={25}
+                        color='#000'
+                    />
+                </Pressable>
             </View>
 
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginHorizontal: -1 }}>
                 {(selectIcon && ((!info.posts.length &&
                     <View style={{ width: '100%', height: 200, justifyContent: 'space-around', alignItems: 'center', marginTop: 60 }}>
-                        <Image style={{ width: 80, height: 80 }} source={ImageIcon} />
+                        <IonicIcon
+                            name='image-outline'
+                            size={80}
+                            color='#000'
+                        />
                         <Text style={{ fontSize: 20, fontWeight: '700' }}>Chưa có bài viết</Text>
                     </View>) ||
                     info.posts.map((post, index) => (
-                        <TouchableOpacity key={index} style={styles.item}>
+                        <TouchableOpacity
+                            key={index}
+                            style={styles.item}
+                            onPress={() => navigation.push('MyPosts')}
+                        >
                             <Image
                                 style={{ height: '100%', resizeMode: 'cover' }}
                                 source={{ uri: post.images[0] }}
                             />
-                            <View style={styles.notifiListImg}> 
-                                <Image style={{ width: 20, height: 20, resizeMode: 'contain' }} source={NotifiListImg} />
-                            </View>
+                            {info.posts.length > 1 &&
+                                <IonicIcon
+                                    name='albums'
+                                    size={20}
+                                    color='#fff'
+                                    style={styles.notifiListImg}
+                                />
+                            }
                         </TouchableOpacity>
                     )))) ||
                     (!info.tagedPosts.length &&
                         <View style={{ width: '100%', height: 200, justifyContent: 'space-around', alignItems: 'center', marginTop: 60 }}>
-                            <Image style={{ width: 80, height: 80 }} source={ImageIcon} />
+                            <IonicIcon
+                                name='image-outline'
+                                size={80}
+                                color='#000'
+                            />
                             <Text style={{ fontSize: 20, fontWeight: '700' }}>Ảnh và video có mặt bạn</Text>
                             <Text style={{ color: '#808080' }}>Ảnh và video mà mọi người gắn thẻ bạn sẽ hiển thị tại đây</Text>
                         </View>) ||
                     info.tagedPosts.map((tagedPost, index) => (
-                        <TouchableOpacity key={index} style={styles.item}>
+                        <TouchableOpacity
+                            key={index}
+                            style={styles.item}
+                            onPress={() => navigation.push('MyPosts')}
+                        >
                             <Image
                                 style={{ height: '100%', resizeMode: 'cover' }}
                                 source={{ uri: tagedPost.images[0] }}
                             />
+                            {info.posts.length > 1 &&
+                                <IonicIcon
+                                    name='albums'
+                                    size={20}
+                                    color='#fff'
+                                    style={styles.notifiListImg}
+                                />
+                            }
                         </TouchableOpacity>
                     ))
                 }
@@ -79,10 +115,6 @@ const styles = StyleSheet.create({
     borderIcon: {
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
-    },
-    selectIcon: {
-        width: 25,
-        height: 25,
     },
     notifiListImg: {
         position: 'absolute',

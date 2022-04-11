@@ -1,11 +1,11 @@
-import { SafeAreaView, StyleSheet, ScrollView } from 'react-native'
-import BottomTabs from "../components/sidebar/BottomTabs"
-import Header from '../components/profile/Header'
+import { StyleSheet, ScrollView } from 'react-native'
+import { SafeAreaView } from "react-native-safe-area-context"
+import Header from "../components/header/Header"
 import Info from '../components/profile/Info'
 import ListPost from '../components/profile/ListPost'
 import { info } from '../data'
 
-const ProfileScreen = ({ navigation }) => {
+const ProfileScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <Header />
@@ -13,7 +13,6 @@ const ProfileScreen = ({ navigation }) => {
                 <Info info={info} />
                 <ListPost info={info} />
             </ScrollView>
-            <BottomTabs initialPage={'Profile'} navigation={navigation} />
         </SafeAreaView>
     )
 }
@@ -21,7 +20,6 @@ const ProfileScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 24,
         backgroundColor: '#fff',
     }
 })

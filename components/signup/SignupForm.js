@@ -1,9 +1,11 @@
 import { View, Text, TextInput, StyleSheet, Pressable, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import { borderColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes'
 
-const SignupForm = ({ navigation }) => {
+const SignupForm = () => {
+    const navigation = useNavigation()
+
     const SignupFormSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email').required('An email is required'),
         username: Yup.string().required().min(2, 'A username is required'),

@@ -14,11 +14,51 @@ export const posts = [
         "comments": [
             {
                 "name": "long",
-                "comment": "hihihi",
+                "avatar": "http://placeimg.com/640/480/food",
+                "id": "1",
+                "comment": "Cuối tuần rồi, phố lên đèn thì mình cũng lên đồ thôi nhưng lên đồ để mở tiệc ăn uống tại gia tưng bừng nè bạn yêu ơi! Thời tiết lúc nắng lúc mưa yên tâm ở nhà đặt GrabFood bao la món ngon: pizza, gà rán, lẩu, nướng… còn ưu đãi giảm đến 99.000đ ",
             },
             {
                 "name": "linh",
+                "id": "2",
+                "avatar": "http://placeimg.com/640/480/nightlife",
                 "comment": "hahaha",
+            },
+            {
+                "name": "long",
+                "avatar": "http://placeimg.com/640/480/food",
+                "id": "1",
+                "comment": "Cuối tuần rồi, phố lên đèn thì mình cũng lên đồ thôi nhưng lên đồ để mở tiệc ăn uống tại gia tưng bừng nè bạn yêu ơi! Thời tiết lúc nắng lúc mưa yên tâm ở nhà đặt GrabFood bao la món ngon: pizza, gà rán, lẩu, nướng… còn ưu đãi giảm đến 99.000đ ",
+            },
+            {
+                "name": "long",
+                "avatar": "http://placeimg.com/640/480/food",
+                "id": "1",
+                "comment": "Cuối tuần rồi, phố lên đèn thì mình cũng lên đồ thôi nhưng lên đồ để mở tiệc ăn uống tại gia tưng bừng nè bạn yêu ơi! Thời tiết lúc nắng lúc mưa yên tâm ở nhà đặt GrabFood bao la món ngon: pizza, gà rán, lẩu, nướng… còn ưu đãi giảm đến 99.000đ ",
+            },
+            {
+                "name": "long",
+                "avatar": "http://placeimg.com/640/480/food",
+                "id": "1",
+                "comment": "Cuối tuần rồi, phố lên đèn thì mình cũng lên đồ thôi nhưng lên đồ để mở tiệc ăn uống tại gia tưng bừng nè bạn yêu ơi! Thời tiết lúc nắng lúc mưa yên tâm ở nhà đặt GrabFood bao la món ngon: pizza, gà rán, lẩu, nướng… còn ưu đãi giảm đến 99.000đ ",
+            },
+            {
+                "name": "long",
+                "avatar": "http://placeimg.com/640/480/food",
+                "id": "1",
+                "comment": "Cuối tuần rồi, phố lên đèn thì mình cũng lên đồ thôi nhưng lên đồ để mở tiệc ăn uống tại gia tưng bừng nè bạn yêu ơi! Thời tiết lúc nắng lúc mưa yên tâm ở nhà đặt GrabFood bao la món ngon: pizza, gà rán, lẩu, nướng… còn ưu đãi giảm đến 99.000đ ",
+            },
+            {
+                "name": "long",
+                "avatar": "http://placeimg.com/640/480/food",
+                "id": "1",
+                "comment": "Cuối tuần rồi, phố lên đèn thì mình cũng lên đồ thôi nhưng lên đồ để mở tiệc ăn uống tại gia tưng bừng nè bạn yêu ơi! Thời tiết lúc nắng lúc mưa yên tâm ở nhà đặt GrabFood bao la món ngon: pizza, gà rán, lẩu, nướng… còn ưu đãi giảm đến 99.000đ ",
+            },
+            {
+                "name": "long",
+                "avatar": "http://placeimg.com/640/480/food",
+                "id": "1",
+                "comment": "Cuối tuần rồi, phố lên đèn thì mình cũng lên đồ thôi nhưng lên đồ để mở tiệc ăn uống tại gia tưng bừng nè bạn yêu ơi! Thời tiết lúc nắng lúc mưa yên tâm ở nhà đặt GrabFood bao la món ngon: pizza, gà rán, lẩu, nướng… còn ưu đãi giảm đến 99.000đ ",
             },
         ],
         "id": "1"

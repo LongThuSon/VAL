@@ -1,10 +1,10 @@
 import { SafeAreaView, StyleSheet } from 'react-native'
 import SignupForm from '../components/signup/SignupForm'
 
-const SignupScreen = ({ navigation }) => {
+const SignupScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
-            <SignupForm navigation={navigation} />
+            <SignupForm />
         </SafeAreaView>
     )
 }

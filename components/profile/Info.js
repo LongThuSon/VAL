@@ -1,6 +1,9 @@
 import { View, Image, StyleSheet, Text, Pressable } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 const Info = ({ info }) => {
+    const navigation = useNavigation()
+
     return (
         <View style={styles.container}>
             <View style={styles.infoContainer}>
@@ -32,6 +35,7 @@ const Info = ({ info }) => {
 
             <Pressable
                 style={styles.button}
+                onPress={() => navigation.push('EditProfile')}
             >
                 <Text style={styles.buttonText}>Chỉnh sửa trang cá nhân</Text>
             </Pressable>

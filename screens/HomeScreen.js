@@ -1,26 +1,25 @@
-import { SafeAreaView, StyleSheet, ScrollView } from "react-native"
-import Header from "../components/home/Header"
+import { StyleSheet, FlatList } from "react-native"
+import { SafeAreaView } from "react-native-safe-area-context"
+import Header from "../components/header/Header"
 import Stories from "../components/home/Stories"
 import Post from '../components/home/Post'
-import BottomTabs from "../components/sidebar/BottomTabs"
 import { posts } from '../data'
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
+    const renderItem = ({ item }) => {
+        return <Post post={item} />
+    }
+    
     return (
         <SafeAreaView style={styles.container}>
             <Header />
-            <ScrollView
+            <FlatList
+                data={posts}
+                renderItem={renderItem}
+                keyExtractor={post => post.id}
+                ListHeaderComponent={Stories}
                 showsVerticalScrollIndicator={false}
-            >
-                <Stories />
-                {posts.map((post, index) => (
-                    <Post
-                        key={index}
-                        post={post}
-                    />
-                ))}
-            </ScrollView>
-            <BottomTabs initialPage={'Home'} navigation={navigation} />
+            />
         </SafeAreaView>
     )
 }
@@ -28,7 +27,6 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 24,
         backgroundColor: '#fff',
     }
 })
