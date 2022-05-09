@@ -13,10 +13,10 @@ const HeaderMyPost = ({ name }) => {
                 color='#000'
                 onPress={() => navigation.goBack()}
             />
-            {/* <View>
-                <Text>{name}</Text>
+            <View>
+                <Text style={{ fontWeight: '700', textAlign: 'center' }}>{name}</Text>
                 <Text style={{ fontSize: 18, fontWeight: '700', textAlign: 'center' }}>Tạo bài đăng</Text>
-            </View> */}
+            </View>
             <Text>      </Text>
         </View>
     )
@@ -24,13 +24,15 @@ const HeaderMyPost = ({ name }) => {
 
 const styles = StyleSheet.create({
     container: {
+        height: 50,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
         marginHorizontal: 12,
         marginTop: 10,
         paddingBottom: 4,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
+        // borderBottomWidth: 1,
+        // borderBottomColor: '#ccc',
     }
 })
 

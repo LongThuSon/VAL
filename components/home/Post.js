@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react'
 import { View, Text, Image, StyleSheet, ScrollView, Dimensions } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import IonicIcon from 'react-native-vector-icons/Ionicons'
@@ -137,16 +137,27 @@ const PostFooter = ({ post }) => {
     )
 }
 
-const Post = ({ post }) => {
+const Post = forwardRef(({ post }, ref) => {
+    const [height, setHeight] = useState(0);
+
+    // console.log(height);
+
+    useImperativeHandle(ref, () => ({
+        returnHeight: () => height
+    }));
+
     return (
-        <View style={{ marginBottom: 20 }}>
+        <View
+            style={{ marginBottom: 20 }}
+            onLayout={object => setHeight(object.nativeEvent.layout.height)}
+        >
             <View style={styles.divider}></View>
             <PostHeader post={post} />
             <PostImage post={post} />
             <PostFooter post={post} />
         </View>
     )
-}
+})
 
 const styles = StyleSheet.create({
     divider: {
