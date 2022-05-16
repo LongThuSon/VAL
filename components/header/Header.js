@@ -1,10 +1,10 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
-import IonicIcon from 'react-native-vector-icons/Ionicons'
-import AntDesign from 'react-native-vector-icons/AntDesign'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import IonicIcon from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const Header = () => {
-    const navigation = useNavigation()
+    const navigation = useNavigation();
 
     return (
         <View style={styles.container}>
@@ -29,7 +29,7 @@ const Header = () => {
             </View>
         </View>
     )
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginHorizontal: 20,
     },
-})
+});
 
-export default Header
+export default Header;

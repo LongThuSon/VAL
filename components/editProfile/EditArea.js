@@ -1,12 +1,14 @@
-import { useState } from 'react'
-import { View, Image, Text, StyleSheet, TextInput, Dimensions, Pressable } from 'react-native'
-import DateTimePicker from '@react-native-community/datetimepicker'
+import { useState } from 'react';
+import { View, Image, Text, StyleSheet, TextInput, Dimensions, Pressable } from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { useNavigation } from '@react-navigation/native';
 
 const EditArea = () => {
     const [sex, setSex] = useState(true)
     const [date, setDate] = useState(new Date());
     const [show, setShow] = useState(false)
     const windowWidth = Dimensions.get('window').width;
+    const navigation = useNavigation();
 
     const onChange = (event, selectedDate) => {
         const birthday = selectedDate || date
@@ -96,12 +98,11 @@ const EditArea = () => {
                 </View>
             </View>
 
-            <View>
+            <Pressable onPress={() => navigation.navigate('Login')}>
                 <Text
                     style={{ width: 70, fontWeight: '700', marginTop: 12, marginLeft: 12, color: 'blue' }}
-                    onPress={() => console.log(123)}
                 >Đăng xuất</Text>
-            </View>
+            </Pressable>
         </View>
     )
 }

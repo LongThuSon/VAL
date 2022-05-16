@@ -1,5 +1,5 @@
-import { SafeAreaView, StyleSheet } from 'react-native'
-import LoginForm from '../components/login/LoginForm'
+import { SafeAreaView, StyleSheet } from 'react-native';
+import LoginForm from '../components/login/LoginForm';
 
 const LoginScreen = () => {
     return (
@@ -7,7 +7,7 @@ const LoginScreen = () => {
             <LoginForm />
         </SafeAreaView>
     )
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -16,6 +16,6 @@ const styles = StyleSheet.create({
         marginTop: 50,
         marginHorizontal: 12,
     },
-})
+});
 
-export default LoginScreen
+export default LoginScreen;

@@ -1,7 +1,8 @@
-import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react'
-import { View, Text, Image, StyleSheet, ScrollView, Dimensions } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
-import IonicIcon from 'react-native-vector-icons/Ionicons'
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
+import { View, Text, Image, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import IonicIcon from 'react-native-vector-icons/Ionicons';
+import EntypoIcon from 'react-native-vector-icons/Entypo';
 
 const PostHeader = ({ post }) => (
     <View style={{
@@ -20,7 +21,12 @@ const PostHeader = ({ post }) => (
             </Text>
         </View>
 
-        <Text style={{ fontWeight: '900' }}>...</Text>
+        <EntypoIcon
+            name='dots-three-horizontal'
+            size={16}
+            color='#000'
+            onPress={() => navigation.push('NewPost')}
+        />
     </View>
 )
 
